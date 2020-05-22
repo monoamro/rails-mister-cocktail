@@ -17,3 +17,5 @@ ingredients_arr = JSON.parse(ingredients)
 ingredients_arr['drinks'].each do |drink|
   Ingredient.create(name: drink['strIngredient1'])
 end
+
+puts "Done adding Ingredients"

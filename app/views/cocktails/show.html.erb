@@ -1,8 +1,28 @@
-<h1><%= @cocktail.name %></h1>
-<% doses = Dose.where(cocktail: @cocktail) %>
-<% doses.each do |dose| %>
-  <h2><%= dose.description %> | <%= dose.ingredient.name %></h2>
-<% end %>
+<div class="row justify-content-center">
+  <div class="card p-3 m-3 w-50">
+    <h1><%= @cocktail.name %></h1>
 
-<%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail)  %>
-<%= link_to 'Bck to cocktails', root_path  %>
+    <h2>Recipe</h2>
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+        <li><%= dose.ingredient.name %> - <%= dose.description %> | <%= link_to "(delete)", dose_path(dose), method: :delete, data: { confirm: "Are you sure???"} %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="card p-3 m-3 w-50">
+    <h2>Add an ingredient</h2>
+    <%= simple_form_for([ @cocktail, @dose ]) do |f| %>
+      <%= f.input :description, placeholder: "dosage" %>
+      <%= f.association :ingredient %>
+      <%= f.submit "Add ingredient", class: "btn btn-primary"  %>
+    <% end %>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div>
+    <%= link_to 'All cocktails', root_path, class: "btn btn-primary px-5"  %>
+  </div>
+</div>
