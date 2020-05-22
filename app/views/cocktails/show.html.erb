@@ -1,13 +1,14 @@
 <div class="row justify-content-center">
-  <div class="card p-3 m-3 w-50">
-    <h1><%= @cocktail.name %></h1>
-
-    <h2>Recipe</h2>
-    <ul>
-      <% @cocktail.doses.each do |dose| %>
-        <li><%= dose.ingredient.name %> - <%= dose.description %> | <%= link_to "(delete)", dose_path(dose), method: :delete, data: { confirm: "Are you sure???"} %></li>
-      <% end %>
-    </ul>
+  <div class="card-category p-3 m-3 w-50" style="border-radius: 10px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @cocktail.photo.key, height: 500, width: 800, crop: :fill, display: :fit; %>')">
+    <div style="background-color: rgba(200,200,200,0.5); border-radius: 10px; padding: 15px;">
+      <h1><%= @cocktail.name %></h1>
+      <h5>Recipe:</h5>
+      <ul>
+        <% @cocktail.doses.each do |dose| %>
+          <li><%= dose.ingredient.name %> - <%= dose.description %> | <%= link_to "(delete)", dose_path(dose), method: :delete, data: { confirm: "Are you sure???"} %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
