@@ -1,8 +1,10 @@
 class DosesController < ApplicationController
 
   def new
+    raise
     @dose = Dose.new
     @cocktail = Cocktail.find(params[:cocktail_id])
+
   end
 
   def create
@@ -12,7 +14,7 @@ class DosesController < ApplicationController
     if @dose.save
       redirect_to cocktail_path(@cocktail), notice: 'Dose was successfully added'
     else
-      redirect_to cocktail_path(@cocktail), notice: 'Dose is missing'
+      redirect_to cocktail_path(@cocktail)
     end
   end
 
